@@ -1,0 +1,12 @@
+<input type="button" value="Select" class="btn btn-warning" (click)="select()">
+<div class="container" [ngClass]="{'d-none': !showList}" >
+    <table class="table">
+        <tbody>
+            <tr *ngFor="let rec of DataSource">
+                <td>
+                    <input type="radio" id="{{rec}}" name="Category" value="{{rec}}"><label for="{{rec}}" (click)="selectCategory(rec)">{{rec}}</label>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
