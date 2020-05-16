@@ -8,11 +8,11 @@ import { ProductReactiveFormComponent } from './components/productreactiveformco
 import { TableDirectiveComponent } from './directives/table.component.directive';
 import { SelectDirectiveComponent } from './directives/select.component.directive';
 import { SimpleElementComponent } from './litelementcomponents/app.simple.element.component';
-
-
-// import all LitElements from its path
 import './litelementapp/app.simpleelement.litelement';
 import './litelementapp/app.grid.litelement';
+import { CustomerComponent } from './components/masterdetailscommunication/app.customer.component';
+import { OrderComponent } from './components/masterdetailscommunication/app.order.component';
+import { SearchComponent } from './components/masterdetailscommunication/app.search.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,10 @@ import './litelementapp/app.grid.litelement';
     ProductReactiveFormComponent,
     TableDirectiveComponent,
     SelectDirectiveComponent,
-    SimpleElementComponent
+    SimpleElementComponent,
+    CustomerComponent,
+    OrderComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule,
@@ -28,6 +31,6 @@ import './litelementapp/app.grid.litelement';
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
-  bootstrap: [SimpleElementComponent]
+  bootstrap: [CustomerComponent, OrderComponent, SearchComponent]
 })
 export class AppModule { }
