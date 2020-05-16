@@ -31,6 +31,6 @@ import { SearchComponent } from './components/masterdetailscommunication/app.sea
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
-  bootstrap: [CustomerComponent, OrderComponent, SearchComponent]
+  bootstrap: [SimpleElementComponent]
 })
 export class AppModule { }

@@ -55,9 +55,9 @@ export class GridElement extends LitElement{
     super();
   }
 
-  delete(e) {
+  deleteItem(e, i) {
     if(e.target.checked) {
-      this.data = this.data.filter(item => item[this.headers[0]] !== Number(e.target.value));
+      this.data = this.data.filter(item => item !== i);
     }
   }
 
@@ -79,13 +79,25 @@ export class GridElement extends LitElement{
     .replace(/^./, function(str){ return str.toUpperCase(); })
   }
 
+  sort(e: any, h: any, order: string) {
+    this.data = this.data.sort(function(d1, d2){
+      if(d1[h] < d2[h]) { return order === "asc" ? -1 : 1; }
+      if(d1[h] > d2[h]) { return order === "desc" ? -1 : 1; }
+      return 0;
+    });
+    this.requestUpdate("data");
+  }
+
   render(){
     return html `
        <div>
           <h2> The Grid LitElement from Project-Polymer </h2>
           <table>
             <tr>
-              ${this.headers.map(h => html`<th>${this.formatHeader(h)}</th>`)}
+              ${this.headers.map(h => html`<th>${this.formatHeader(h)} 
+              <input type="button" value="&#8593;" @click=${e => this.sort(e, h, "asc")} />
+              <input type="button" value="&#8595;" @click=${e => this.sort(e, h, "desc")} />
+              </th>`)}
               <th>
                 <input type="checkbox" id="selectAll" name="SelectAll" value="SelectAll" @click=${this.selectAll}><label for="selectAll">Select All</label>
               </th>
@@ -100,11 +112,12 @@ export class GridElement extends LitElement{
                 <td><input type="checkbox"
                 value=${d[this.headers[0]]}
                 .checked=${d.IsDeleted}
-                @click=${this.delete}></td>
+                @click=${e => this.deleteItem(e, d)}></td>
               </tr>
             `)}
         </table>
        </div>
     `;
   }
+  
 }
